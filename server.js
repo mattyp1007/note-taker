@@ -49,3 +49,4 @@ app.post('/api/notes', (req, res) => {
 // start server
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
 
+// hello there
