@@ -24,12 +24,12 @@ let notesData = JSON.parse(fs.readFileSync('./db/db.json'));
 
 // html routes
 
-//// main route
+//// home page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'))
 });
 
-//// notes route
+//// notes page
 app.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 });
@@ -53,6 +53,11 @@ app.delete('/api/notes/:id', (req, res) => {
   notesData = notesData.filter(item => item.id != req.params.id);
   res.json(notesData);
   fs.writeFileSync('./db/db.json', JSON.stringify(notesData))
+});
+
+// default to home page
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 // start server
