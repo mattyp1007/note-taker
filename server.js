@@ -49,9 +49,8 @@ app.post('/api/notes', (req, res) => {
 
 //// DELETE note
 app.delete('/api/notes/:id', (req, res) => {
-  
+  // removes the item with the given id
   notesData = notesData.filter(item => item.id != req.params.id);
-  console.log(notesData);
   res.json(notesData);
   fs.writeFileSync('./db/db.json', JSON.stringify(notesData))
 });
