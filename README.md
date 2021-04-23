@@ -9,7 +9,7 @@ This project, hosted on Heroku, is a simple note taker app that uses express.js 
 ## Screenshots
 
 ### Home Page
-![Caption](./assets/images/grab-1.png)
+[!Caption](./public/assets/images/grab-1.png)
 
 ### Notes Page
-![Caption](./assets/images/grab-2.png)
+[!Caption](./public/assets/images/grab-2.png)
