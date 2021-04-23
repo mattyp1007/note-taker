@@ -20,9 +20,10 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // get data from file
-const notesData = JSON.parse(fs.readFileSync('./db/db.json'));
+let notesData = JSON.parse(fs.readFileSync('./db/db.json'));
 
 // html routes
+
 //// main route
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'))
@@ -38,7 +39,7 @@ app.get('/notes', (req, res) => {
 //// GET notes
 app.get('/api/notes', (req, res) => res.json(notesData));
 
-//// POST notes
+//// POST note
 app.post('/api/notes', (req, res) => {
   req.body.id = uuidv4();
   notesData.push(req.body);
@@ -46,6 +47,14 @@ app.post('/api/notes', (req, res) => {
   fs.writeFileSync('./db/db.json', JSON.stringify(notesData))
 });
 
+//// DELETE note
+app.delete('/api/notes/:id', (req, res) => {
+  
+  notesData = notesData.filter(item => item.id != req.params.id);
+  console.log(notesData);
+  res.json(notesData);
+  fs.writeFileSync('./db/db.json', JSON.stringify(notesData))
+});
 
 // start server
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));

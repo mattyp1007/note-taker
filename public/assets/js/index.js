@@ -100,9 +100,10 @@ const handleNoteDelete = (e) => {
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
+  // get the note data, the OR operator allows the data to be
+  // retrieved whether the list item or the title is clicked
   activeNote = JSON.parse(e.target.getAttribute('data-note')) 
     || JSON.parse(e.target.parentElement.getAttribute('data-note'));
-  console.log(activeNote);
   renderActiveNote();
 };
 
